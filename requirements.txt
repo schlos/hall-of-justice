@@ -1,7 +1,7 @@
 pytz>=2015.2
 celery==3.1.18
 redis>=2.10.3
-Django>=1.8
+Django>=1.8,<1.9
 dj-database-url==0.3.0
 elasticsearch==1.4.0
 elasticstack==0.1.1
@@ -13,5 +13,5 @@ psycopg2==2.6
 gunicorn==19.3.0
 requests>=2.7.0
 whitenoise==1.0.6
-django-grappelli>=2.6.5
+django-grappelli>=2.7.3,<2.8
 xlrd==0.9.3

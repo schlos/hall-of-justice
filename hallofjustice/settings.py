@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', None)
+SECRET_KEY = os.getenv('SECRET_KEY', "idontknow")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
@@ -61,7 +61,24 @@ AUTHENTICATION_MIDDLEWARE = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 )
 
-MIDDLEWARE_CLASSES = MC + AUTHENTICATION_MIDDLEWARE + (
+COMPRESSION_MIDDLEWARE = (
+    'django.middleware.gzip.GZipMiddleware',
+)
+
+MESSAGING_MIDDLEWARE = (
+    'django.contrib.messages.middleware.MessageMiddleware',
+)
+
+CSRF_MIDDLEWARE = (
+    'django.middleware.csrf.CsrfViewMiddleware',
+)
+
+COMMON_MIDDLEWARE = (
+    'django.middleware.common.CommonMiddleware',
+)
+
+MIDDLEWARE_CLASSES = COMPRESSION_MIDDLEWARE + COMMON_MIDDLEWARE + CSRF_MIDDLEWARE +\
+                     AUTHENTICATION_MIDDLEWARE + MESSAGING_MIDDLEWARE + (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 

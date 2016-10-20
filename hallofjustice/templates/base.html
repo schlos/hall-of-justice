@@ -1,67 +1,259 @@
 <!doctype html>{% load static from staticfiles %}
-<html class="no-js" lang="en">
-
+<html class="bb_wrapper no-js" lang="en-US">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hall of Justice</title>
+
+    <script src="https://use.typekit.net/evg6yrh.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <meta property="og:url"           content="https://hallofjustice.sunlightfoundation.com" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Hall of Justice" />
+    <meta property="og:description"   content="Dig through criminal justice data from across the U.S. with Hall of Justice from Sunlight Foundation." />
+    <!-- <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" /> -->
+    <link rel="shortcut icon" href="https://sunlight-cdn.s3.amazonaws.com/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{% static "css/foundation.css" %}" />
-    <script src="{% static "js/vendor/modernizr.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "css/site.css" %}">
+    <link rel="stylesheet" type="text/css" href="https://sunlight-cdn.s3.amazonaws.com/brandingbar/0.4/css/brandingbar.min.css.gz" />
+    <link rel="stylesheet" type="text/css" href="https://sunlight-cdn.s3.amazonaws.com/sf-icons/0.2/css/sf-icons.min.css.gz" />
     {% block extrahead %}{% endblock extrahead %}
+
+    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+    
+<style>
+
+::-webkit-scrollbar {
+   -webkit-appearance: none;
+   width: 7px;
+   display:none;
+}
+::-webkit-scrollbar-thumb {
+   border-radius: 4px;
+   background-color: rgba(0,0,0,.5);
+   -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+   display:none;
+}
+
+ul.dropdown-states{height: 500px !important;
+   overflow: scroll !important;}
+.contain-to-grid{background-color:transparent; color:#000 !important}
+.top-bar,.top-bar-section .has-form,.top-bar-section,.top-bar-section ul li,.top-bar-section ul li a,.top-bar-section ul.left,.top-bar-section ul.left li.has-dropdown{background-color:transparent; color:#000;}
+section.top-bar-section,section.top-bar-section ul.left,section.top-bar-section ul.left li.has-dropdown.not-click{background-color:transparent !important}
+.top-bar-section ul li::not(.has-form) a{background-color:transparent !important; color:#000 !important;}
+.top-bar-section ul li:hover:not(.has-form) > a{background-color:transparent !important; color:#000 !important;}
+.top-bar-section li:not(.has-form) a:not(.button) {background-color:transparent !important; color:#000 !important}
+
+.contain-to-grid .top-bar .title-area .name h1 a{color:#000 !important;}
+.postfix.button{background-color:#06686d !important; color:#fff !important;}
+.top-bar-section .has-dropdown > a:after{border-color:#fff !important; border:none !important;}
+.contain-to-grid{margin-bottom:1em;}
+input#id_q{background-color:#e4eded !important; color:#586c71 !important; font-size:17px;}
+
+.contain-to-grid{background:url("https://sunlight-assets.s3.amazonaws.com/academy/sfapp/img/sfapp_bg.jpg")}
+
+.top-bar{height:150px; padding-top:10px !important; padding-bottom:10px !important;}
+.top-bar .title-area,.top-bar .title-area li,.top-bar .title-area h1{height:100% !important;}
+.top-bar .title-area h1 a{height:100% !important; display:block; line-height:130px !important; font-size:40px !important;}
+
+section.top-bar-section ul.right{margin-top:50px;}
+.row.footer-row{width:100% !important;}
+#frow{max-width:100% !important; margin-bottom:0 !important; padding-bottom:0 !important;}
+.footer,.footer-row,.footer-columns{background-color:#e4eded !important;}
+.footer{padding-bottom:2em !important;}
+
+li.has-dropdown ul,li.has-dropdown li{background-color:#c4e4e4 !important;}
+li.has-dropdown li a:hover{font-weight:bold !important; background-color:#fff !important}
+#search input{height:50px; line-height:1.5; font-size:17px;}
+
+#svgmap {
+    margin-top:35px;
+    margin-bottom:35px;
+}
+#svgmap:after{
+    clear:both;
+    content:" ";
+    display:block;
+}
+
+.main-aside{float:left;}
+.main-aside h3{font-size:15px; color:#4a6067 !important; font-weight:bold;}
+.main-aside ul{list-style:none; padding:0; margin-left:25px !important;}
+.main-aside li a{color:#4a6067 !important; text-decoration:underline;}
+#svgmap svg {
+    float:left;
+}
+svg:hover{cursor:pointer;}
+
+.index-main-bottom{padding-bottom:50px;}
+.index-main-bottom .x{color:#4a6067 !important}
+.index-main-bottom h3.x{font-size:35px !important; line-height:45px !important; margin-bottom:40px;}
+.index-main-bottom-half{width:47%; float:left;}
+
+.index-main-bottom-half p.x{padding:0 .75em; margin:0 0 .5em 0; font-size:15px; line-height:22px;}
+
+table.datasets-table thead th{background-color:#e4eded !important; }
+table.datasets-table tbody tr{background-color:#eff4f4 !important; }
+table.datasets-table tbody tr.stripe{background-color:#fff !important;}
+/** alt row #fff **/
+#footer{margin-top:30px;}
+.footer{text-align:center;}
+.footer-nav{margin-left:auto; margin-right:auto; list-style-type:none; display: inline-block; margin-top:25px}
+.footer-nav li{float:left; margin-left:10px; margin-right:10px; }
+.footer-nav a{display:block; text-align:center; line-height:50px; color:#06686d; font-weight:bold; padding-left:20px; padding-right:20px;}
+.footer-nav:after{
+    clear:both;
+    content:" ";
+    display:block;
+}
+
+.sf-logo{margin-top:40px; margin-bottom:40px;}
+.sf-logo,.sf-logo img{display:block; margin-left:auto; margin-right:auto;}
+.footer p{color:#6e6e6e; width:70%; margin-left:auto; margin-right:auto;}
+
+
+
+nav .title-area .name h1 a{font-family: "azo-sans-web";}
+nav .title-area .name h1 a b{font-family:Georgia; font-size:140%; font-style:italic; font-weight:normal;}
+nav .top-bar-section .right{}
+nav .top-bar-section .right li.has-dropdown a{font-family:"azo-sans-web"; color:#04686c !important; font-size:17px !important;}
+
+.export.button.small.secondary{float:right; margin-right:15px; color:#fff !important; background-color:#06686d !important;}
+.export.button.small.secondary:hover{color:#06686d !important; background-color:#fff !important; outline:1px solid #06686d;}
+
+
+body{max-height:1500px !important;}
+*{margin:0}
+
+
+/** placeholder input content **/
+input:focus::-webkit-input-placeholder { color:transparent; } /** chrome/opera **/
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+/** dropdown menu hover action **/
+.top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
+color:#000 !important; text-decoration:underline;}
+
+
+@media screen and (max-width: 480px) {
+    .main-aside {
+        display: none;
+    }
+    .top-bar {
+        height: auto;
+    }
+    body > div.page-wrap > div.contain-to-grid > nav > ul > li > h1 > a {
+        line-height: 1.25em !important;
+        margin-bottom: -0.75em;
+    }
+    svg {
+        margin-top: -4.5em;
+        margin-bottom: -4.5em;
+        width: 100% !important;
+    }
+    body > div.page-wrap > div.contain-to-grid > nav > section > ul > li {
+        display: none;
+    }
+    .footer-nav li{float: none; width: 100%; margin:0 }
+    .footer-nav{ width:100%;}
+
+    #search input[type='submit'] {
+        font-size:10px;
+    }
+    /** prevent floating of columns on mobile. only show  one column at a time **/
+    .index-main-bottom-half{width:100%}
+    .sf-logo img{width:80%;}
+    nav .title-area .name h1 a{width:100%;
+
+
+
+}
+
+</style>
 </head>
 
 <body>
-    <div class="contain-to-grid">
-        <nav class="top-bar" data-topbar role="navigation">
-            <ul class="title-area">
-                <li class="name">
-                <h1><a href="{% url 'index' %}">Criminal Justice Data Prototype</a></h1>
-                </li>
-            </ul>
-            <section class="top-bar-section">
-                <ul class="left">
-                    <li class="has-dropdown">
-                        <a href="#">Categories</a>
-                        <ul class="dropdown">{% for item in main_categories.all %}
-                            <li {% if item.children %}class="has-dropdown"{% endif %}>
-                                <a href="{% url 'datasets-by-category' category=item.name|slugify %}">{{ item.name }}</a>
-                                {% if item.children %}
-                                    <ul class="dropdown">
-                                        {% for child in item.children.all %}
-                                        <li><a href="{% url 'datasets-by-category' category=item.name|slugify subcategory=child.name|slugify %}">{{ child.name }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                            </li>{% endfor %}
-                        </ul>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+            js.async = true;
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="page-wrap">
+        <div class="branding-bar" data-bb-brandingbar="true" data-bb-property-id="hoj"></div>
+        <div class="contain-to-grid">
+            <nav class="top-bar" data-topbar role="navigation">
+                <ul class="title-area">
+                    <li class="name">
+                    <h1><a href="{% url 'index' %}" class="tk-azo-sans-web">HALL <b class="">of</b> JUSTICE</a></h1>
                     </li>
-                    <li class="divider"></li>
-                    <li class="has-form">
-                        <select id="state-select" name="state">
-                            <option value="" {% if not location_abbr %}selected{% endif %}>-- View Location --</option>
-                        {% for item in state_choices %}
-                            <option {% ifequal item.0 location_abbr %}selected{% endifequal %}
-                            value="{% url 'datasets-by-location' location=item.0|lower %}">{{ item.1 }}</option>
-                        {% endfor %}
-                        </select>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="has-form"><a class="button" href="{% url 'haystack_search' %}">Search Page</a></li>
                 </ul>
-            </section>
-        </nav>
+                <section class="top-bar-section">
+                    <ul class="right">
+                        <li class="has-dropdown">
+                            <a href="#">LOCATIONS</a>
+                            <ul class="dropdown dropdown-states">{% for item in state_choices %}
+                                <li {% if item.children %}class="has-dropdown"{% endif %}>
+                                    <a href="{% url 'datasets-by-location' location=item.0|lower %}">{{ item.1 }}</a>
+                                </li>{% endfor %}
+                            </ul>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="#">CATEGORIES</a>
+                            <ul class="dropdown">{% for item in main_categories.all %}
+                                <li {% if item.children %}class="has-dropdown"{% endif %}>
+                                    <a href="{% url 'datasets-by-category' category=item.name|slugify %}">{{ item.name }}</a>
+                                    {% if item.children %}
+                                        <ul class="dropdown">
+                                            {% for child in item.children.all %}
+                                            <li><a href="{% url 'datasets-by-category' category=item.name|slugify subcategory=child.name|slugify %}">{{ child.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>{% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+        <section role="main">
+            <div class="row">
+                <div class="small-12 columns">
+                    {% include "search/_search_form.html" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="columns large-12">{% block pageheader %}{% endblock %}</div>
+            </div>
+            <div class="row">
+                <div class="columns large-12">{% block content %}{% endblock %}</div>
+            </div>
+        </section>
     </div>
-    <section role="main">
-        <div class="row">
-            <div class="columns large-12">{% block pageheader %}{% endblock %}</div>
-        </div>
-        <div class="row">
-            <div class="columns large-12">{% block content %}{% endblock %}</div>
-        </div>
-    </section>
-
+    {% include "footer.html" %}
     <script src="{% static "js/vendor/jquery.js" %}"></script>
+    <script>
+        $(window).bind("load", function () {
+            var footer = $("#footer");
+            var pos = footer.position();
+            var height = $(window).height();
+            height = height - pos.top;
+            height = height - footer.height();
+            if (height > 0) {
+                footer.css({
+                    'margin-top': height + 'px'
+                });
+            }
+        });
+    </script>
     <script src="{% static "js/foundation.min.js" %}"></script>
     {% block jslibs %}{% endblock jslibs %}
     <script type="text/javascript">
@@ -76,12 +268,54 @@
                     var state_val = selection.val();
                     if (state_val != "") {
                         document.location = selection.val();
-                    };
-                };
+                    }
+                }
             });
         });
     </script>
+     <!--   <script src="http://static.openstates.org/assets/v3.1/js/jquery-1.9.0.min.js"></script> -->
+    <script src="http://static.openstates.org/assets/v3.1/js/d3.v3.min.js"></script>
+    <script>
+        var blue = '#75afa5';
+        var green = '#a5b765';
+        $(function() {
+            /* add a mouseover handler for each g */
+            d3.selectAll('g')
+            //.each(function() { if(!this.id) { console.log(this);}  } )
+            .on("mouseover", function() {
+                d3.select(this).selectAll('stop').style('stop-color', blue);
+            })
+            .on("mouseout", function() {
+                d3.select(this).selectAll('stop').style('stop-color', green);
+            })
+            .on("click", function() {
+                if(this.id.length == 2) {
+                    document.location = '/location/' + this.id + '/';
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+          $("tbody tr:nth-child(odd)").addClass("stripe");
+          if (window.location.pathname!='/') {
+            $('#search').css('margin-left','10%');
+          }
+        });
+    </script>
     {% block js %}{% endblock js %}
+    <script src="https://sunlight-cdn.s3.amazonaws.com/brandingbar/0.4/js/brandingbar.min.js.gz"></script>
+    <script src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-48789618-1', 'hallofjustice.sunlightfoundation.com', {'name': 'global'});
+        ga('global.send', 'pageview');
+        // IP anonymization (last triplet) - this is optional, not part of the standard snippet
+        ga('set', 'anonymizeIp', true);
+    </script>
 </body>
 
 </html>
